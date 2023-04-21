@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Banner from './componentes/Banner';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
+import Colaborador from './componentes/Colaborador';
 
 function App() {
 
@@ -28,11 +29,11 @@ function App() {
     }
   ]
 
-  const [colaborador, setColaboradores] = useState([])
+  const [colaboradores, setColaboradores] = useState([])
 
   const aoNovoColaboradorAdicionado = (colaborador)=>{
     console.log(colaborador)
-    setColaboradores([...colaborador, colaborador])
+    setColaboradores([...colaboradores, colaborador])
   }
 
   return (
@@ -40,7 +41,13 @@ function App() {
       <Banner/>
       <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>      
 
-      {times.map(time => <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria}/>)}
+      {times.map(time => <Time 
+        key={time.nome} 
+        nome={time.nome} 
+        corPrimaria={time.corPrimaria} 
+        corSecundaria={time.corSecundaria}
+        colaboradores={colaboradores}
+      />)}
       
     </div>
   );
